@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign Up | SwiftLuxe</title>
+  <title>Sign Up | Swift Luxe</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
@@ -17,14 +17,117 @@
       --muted:#6b7280;
     }
 
-    body{
-      background:var(--bg);
-      color:var(--text);
+    html, body{
       min-height:100vh;
+      color:var(--text);
+    }
+
+    body{
+      margin:0;
+      display:flex;
+      min-height:100vh;
+    }
+
+    /* ===== Left brand panel ===== */
+    .brand-panel{
+      flex:1 1 50%;
+      background:linear-gradient(135deg, var(--orange), #ffb04c);
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+      padding:3rem 3.5rem;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      min-height:100vh;
+    }
+
+    .brand-panel .brand-name{
+      font-weight:900;
+      font-size:1.3rem;
+      letter-spacing:.02em;
+    }
+
+    .brand-panel .pill-tag{
+      display:inline-block;
+      background:rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.35);
+      border-radius:999px;
+      padding:.4rem .9rem;
+      font-size:.75rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:1.5rem;
+    }
+
+    .brand-panel h1{
+      font-size:2.6rem;
+      font-weight:800;
+      line-height:1.15;
+      margin-bottom:1rem;
+    }
+
+    .brand-panel p.lead-text{
+      color:rgba(255,255,255,.92);
+      font-size:1rem;
+      max-width:420px;
+      margin-bottom:2.25rem;
+    }
+
+    .feature-card{
+      background:#fff;
+      color:var(--text);
+      border-radius:14px;
+      padding:.9rem 1.1rem;
+      display:flex;
+      align-items:center;
+      gap:.85rem;
+      margin-bottom:.85rem;
+      max-width:420px;
+    }
+
+    .feature-card i{
+      font-size:1.5rem;
+      color:var(--orange);
+    }
+
+    .feature-card .f-title{
+      font-weight:700;
+      font-size:.95rem;
+    }
+
+    .feature-card .f-sub{
+      font-size:.8rem;
+      color:var(--muted);
+    }
+
+    .brand-panel .copyright{
+      font-size:.8rem;
+      color:rgba(255,255,255,.85);
+      position:relative;
+      z-index:2;
+    }
+
+    .brand-panel .deco-circle{
+      position:absolute;
+      bottom:-80px;
+      right:-60px;
+      width:280px;
+      height:280px;
+      border-radius:50%;
+      background:rgba(255,255,255,.15);
+    }
+
+    /* ===== Right form panel ===== */
+    .form-panel{
+      flex:1 1 50%;
+      background:var(--bg);
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:2.5rem 1rem;
+      padding:2.5rem 1.5rem;
+      min-height:100vh;
     }
 
     .brand{
@@ -182,109 +285,161 @@
 
     .invalid-feedback{ font-size:.75rem; }
     .form-control.is-invalid{ border-color:#dc3545; }
+
+    /* Responsive: hide left brand panel on smaller screens */
+    @media (max-width: 991.98px){
+      .brand-panel{ display:none; }
+      .form-panel{ flex:1 1 100%; }
+    }
   </style>
 </head>
 <body>
 
-  <div class="signup-card">
+  <!-- ===== Left brand panel ===== -->
+  <div class="brand-panel">
+    <div class="deco-circle"></div>
 
-    <a href="#" class="brand fs-3 d-inline-block mb-4">SwiftLuxe</a>
+    <div style="position:relative; z-index:2;">
+      <div class="brand-name">Swift Luxe</div>
+    </div>
 
-    <h2 class="section-title mb-1">Create your account</h2>
-    <p class="small-muted mb-4">Join SwiftLuxe and start saving on daily deals.</p>
-
-    <form id="signupForm" novalidate>
-
-      <div class="row g-2 mb-3">
-        <div class="col-6">
-          <label for="firstName" class="form-label">First name</label>
-          <input type="text" class="form-control" id="firstName" placeholder="John" required>
-          <div class="invalid-feedback">Required.</div>
-        </div>
-        <div class="col-6">
-          <label for="lastName" class="form-label">Last name</label>
-          <input type="text" class="form-control" id="lastName" placeholder="Doe" required>
-          <div class="invalid-feedback">Required.</div>
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email" placeholder="you@example.com" required autocomplete="email">
-        <div class="invalid-feedback">Enter a valid email address.</div>
-      </div>
-
-      <div class="mb-3">
-        <label for="phone" class="form-label">Phone number</label>
-        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
-        <div class="invalid-feedback">Enter a valid phone number.</div>
-      </div>
-
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <div class="input-group">
-          <input type="password" class="form-control" id="password" placeholder="At least 8 characters" required autocomplete="new-password">
-          <span class="input-group-text" id="togglePassword">
-            <i class="bi bi-eye" id="eyeIcon"></i>
-          </span>
-        </div>
-        <div class="strength-bar">
-          <div class="strength-fill" id="strengthFill"></div>
-        </div>
-        <div class="strength-label" id="strengthLabel"></div>
-        <div class="invalid-feedback d-block" id="passwordError" style="display:none!important;"></div>
-      </div>
-
-      <div class="mb-3">
-        <label for="confirmPassword" class="form-label">Confirm password</label>
-        <div class="input-group">
-          <input type="password" class="form-control" id="confirmPassword" placeholder="Repeat your password" required autocomplete="new-password">
-          <span class="input-group-text" id="toggleConfirm">
-            <i class="bi bi-eye" id="eyeIconConfirm"></i>
-          </span>
-        </div>
-        <div class="invalid-feedback" id="confirmError">Passwords do not match.</div>
-      </div>
-
-      <div class="mb-4 form-check">
-        <input type="checkbox" class="form-check-input" id="terms" required>
-        <label class="form-check-label" for="terms">
-          I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-        </label>
-        <div class="invalid-feedback">You must agree before continuing.</div>
-      </div>
-
-      <button type="submit" class="btn btn-orange w-100 mb-4">Create Account</button>
-
-      <div class="text-center mb-4">
-        <span class="divider-text">or sign up with</span>
-      </div>
-
-      <div class="row g-2 mb-4">
-        <div class="col-6">
-          <button type="button" class="btn btn-social w-100 d-flex align-items-center justify-content-center gap-2">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
-              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-            </svg>
-            Google
-          </button>
-        </div>
-        <div class="col-6">
-          <button type="button" class="btn btn-social w-100 d-flex align-items-center justify-content-center gap-2">
-            <i class="bi bi-facebook" style="color:#1877f2;"></i>
-            Facebook
-          </button>
-        </div>
-      </div>
-
-      <p class="text-center signin-text mb-0">
-        Already have an account? <a href="#" class="signin-link">Sign in</a>
+    <div style="position:relative; z-index:2;">
+      <span class="pill-tag">Luxury · Curated · Modern</span>
+      <h1>Join the Swift<br>Luxe collection.</h1>
+      <p class="lead-text">
+        Create your account to unlock member pricing, early access to drops, and a faster checkout every time.
       </p>
 
-    </form>
+      <div class="feature-card">
+        <i class="bi bi-truck"></i>
+        <div>
+          <div class="f-title">Fast Delivery</div>
+          <div class="f-sub">On selected items</div>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <i class="bi bi-shield-check"></i>
+        <div>
+          <div class="f-title">Secure Payments</div>
+          <div class="f-sub">Safe checkout</div>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <i class="bi bi-arrow-repeat"></i>
+        <div>
+          <div class="f-title">Easy Returns</div>
+          <div class="f-sub">30-day policy</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright">© 2026 Swift Luxe. All rights reserved.</div>
+  </div>
+
+  <!-- ===== Right form panel ===== -->
+  <div class="form-panel">
+    <div class="signup-card">
+
+      <a href="#" class="brand fs-3 d-inline-block mb-4">Swift Luxe</a>
+
+      <h2 class="section-title mb-1">Create your account</h2>
+      <p class="small-muted mb-4">Join Swift Luxe and start saving on daily deals.</p>
+
+      <form id="signupForm" novalidate>
+
+        <div class="row g-2 mb-3">
+          <div class="col-6">
+            <label for="firstName" class="form-label">First name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="John" required>
+            <div class="invalid-feedback">Required.</div>
+          </div>
+          <div class="col-6">
+            <label for="lastName" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Doe" required>
+            <div class="invalid-feedback">Required.</div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" placeholder="you@example.com" required autocomplete="email">
+          <div class="invalid-feedback">Enter a valid email address.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone number</label>
+          <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+          <div class="invalid-feedback">Enter a valid phone number.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-group">
+            <input type="password" class="form-control" id="password" placeholder="At least 8 characters" required autocomplete="new-password">
+            <span class="input-group-text" id="togglePassword">
+              <i class="bi bi-eye" id="eyeIcon"></i>
+            </span>
+          </div>
+          <div class="strength-bar">
+            <div class="strength-fill" id="strengthFill"></div>
+          </div>
+          <div class="strength-label" id="strengthLabel"></div>
+          <div class="invalid-feedback d-block" id="passwordError" style="display:none!important;"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label">Confirm password</label>
+          <div class="input-group">
+            <input type="password" class="form-control" id="confirmPassword" placeholder="Repeat your password" required autocomplete="new-password">
+            <span class="input-group-text" id="toggleConfirm">
+              <i class="bi bi-eye" id="eyeIconConfirm"></i>
+            </span>
+          </div>
+          <div class="invalid-feedback" id="confirmError">Passwords do not match.</div>
+        </div>
+
+        <div class="mb-4 form-check">
+          <input type="checkbox" class="form-check-input" id="terms" required>
+          <label class="form-check-label" for="terms">
+            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+          </label>
+          <div class="invalid-feedback">You must agree before continuing.</div>
+        </div>
+
+        <button type="submit" class="btn btn-orange w-100 mb-4">Create Account</button>
+
+        <div class="text-center mb-4">
+          <span class="divider-text">or sign up with</span>
+        </div>
+
+        <div class="row g-2 mb-4">
+          <div class="col-6">
+            <button type="button" class="btn btn-social w-100 d-flex align-items-center justify-content-center gap-2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+              Google
+            </button>
+          </div>
+          <div class="col-6">
+            <button type="button" class="btn btn-social w-100 d-flex align-items-center justify-content-center gap-2">
+              <i class="bi bi-apple"></i>
+              Apple
+            </button>
+          </div>
+        </div>
+
+        <p class="text-center signin-text mb-0">
+          Already have an account? <a href="signin.html" class="signin-link">Sign in</a>
+        </p>
+
+      </form>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -359,7 +514,8 @@
         return;
       }
 
-      alert('Account created successfully!');
+      // All validation passed — redirect to sign in page
+      window.location.href = 'signin.html';
     });
   </script>
 
