@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sign In | NovaMart</title>
+<title>Sign In | Swift Luxe</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
@@ -286,7 +286,7 @@
 
   <!-- LEFT: BRAND PANEL -->
   <div class="brand-panel">
-    <div class="brand-wordmark">NovaMart</div>
+    <div class="brand-wordmark">SWIFT LUXE</div>
 
     <div class="brand-mid">
       <span class="eyebrow-badge">Marketplace · Deals · Delivery</span>
@@ -316,17 +316,17 @@
       </div>
     </div>
 
-    <div class="panel-footer">© 2026 NovaMart. All rights reserved.</div>
+    <div class="panel-footer">© 2026 Swift Luxe. All rights reserved.</div>
   </div>
 
   <!-- RIGHT: FORM PANEL -->
   <div class="form-panel">
     <div class="form-card">
 
-      <div class="d-lg-none brand-wordmark mb-3 text-center" style="color:var(--orange)">NovaMart</div>
+      <div class="d-lg-none brand-wordmark mb-3 text-center" style="color:var(--orange)">Swift Luxe</div>
 
       <div class="form-title">Sign in to your account</div>
-      <div class="form-caption">New to NovaMart? <a href="signup.html">Create an account</a></div>
+      <div class="form-caption">New to SWIFT LUXE? <a href="signup.html">Create an account</a></div>
 
       <form id="signinForm" novalidate>
 
@@ -357,7 +357,7 @@
           <a href="#" class="link-orange">Forgot password?</a>
         </div>
 
-        <button type="submit" class="btn-orange">Sign In</button>
+            <button type="submit" class="btn-orange">Sign In</button>
 
         <div class="divider-text">OR CONTINUE WITH</div>
 
@@ -417,10 +417,9 @@
       pwErr.classList.remove('show');
     }
 
-    if (valid) {
+if (valid) {
       // Hook up to your real sign-in logic / API call here
-      alert('Signed in successfully! (demo)');
-      form.reset();
+      window.location.href = 'loggedin.html';
     }
   });
 
