@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sign In | NovaMart</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+<style>
+  :root{
+    --orange:#f68b1e;
+    --orange-dark:#df7d10;
+    --bg:#f5f5f5;
+    --surface:#ffffff;
+    --border:#eeeeee;
+    --text:#1f1f1f;
+    --muted:#6b7280;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+  }
+
+  /* Self-contained two-column split — doesn't rely on Bootstrap's grid CSS loading */
+  .split-wrap{
+    display:flex;
+    min-height:100vh;
+  }
+
+  /* ---------- LEFT BRAND PANEL ---------- */
+  .brand-panel{
+    flex:0 0 46%;
+    background:linear-gradient(135deg, rgba(246,139,30,.97), rgba(255,176,76,.92));
+    color:#fff;
+    padding:3rem 3.25rem;
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    overflow:hidden;
+  }
+  .brand-panel::after{
+    content:"";
+    position:absolute;
+    right:-60px;
+    bottom:-60px;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+  }
+
+  .brand-wordmark{
+    font-weight:900;
+    letter-spacing:.02em;
+    font-size:1.5rem;
+    position:relative;
+    z-index:1;
+  }
+
+  .brand-mid{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:2rem 0;
+    max-width:420px;
+    position:relative;
+    z-index:1;
+  }
+
+  .eyebrow-badge{
+    display:inline-flex;
+    align-self:flex-start;
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.35);
+    color:#fff;
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:.4rem .85rem;
+    border-radius:999px;
+    margin-bottom:1.25rem;
+  }
+
+  .brand-headline{
+    font-weight:800;
+    font-size:clamp(1.9rem, 3vw, 2.6rem);
+    line-height:1.15;
+    margin-bottom:.75rem;
+  }
+  .brand-sub{
+    opacity:.92;
+    font-size:.98rem;
+    line-height:1.6;
+    margin-bottom:2rem;
+  }
+
+  .feature-card{
+    background:rgba(255,255,255,.97);
+    color:var(--text);
+    border-radius:16px;
+    padding:.85rem 1rem;
+    display:flex;
+    align-items:center;
+    gap:.85rem;
+    margin-bottom:.75rem;
+  }
+  .feature-card i{ font-size:1.5rem; color:var(--orange); }
+  .feature-card .ft-title{ font-weight:700; font-size:.92rem; }
+  .feature-card .ft-sub{ font-size:.78rem; color:var(--muted); }
+
+  .panel-footer{
+    font-size:.78rem;
+    opacity:.85;
+    margin-top:auto;
+    position:relative;
+    z-index:1;
+  }
+
+  /* ---------- RIGHT FORM PANEL ---------- */
+  .form-panel{
+    flex:0 0 54%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:2.5rem 1.5rem;
+  }
+  .form-card{
+    width:100%;
+    max-width:420px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:2.25rem;
+    box-shadow:0 10px 28px rgba(0,0,0,.04);
+  }
+
+  .form-title{ font-weight:800; font-size:1.6rem; margin-bottom:.35rem; }
+  .form-caption{ color:var(--muted); font-size:.92rem; margin-bottom:1.75rem; }
+  .form-caption a{ color:var(--orange); font-weight:700; text-decoration:none; }
+  .form-caption a:hover{ text-decoration:underline; }
+
+  .field-label{
+    font-size:.82rem;
+    font-weight:600;
+    margin-bottom:.4rem;
+    display:block;
+  }
+
+  .input-shell{ position:relative; }
+
+  .form-control-nova{
+    width:100%;
+    background:#fafafa;
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+    padding:.7rem .95rem;
+    font-size:.94rem;
+    transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .form-control-nova::placeholder{ color:#9ca3af; }
+  .form-control-nova:focus{
+    outline:none;
+    border-color:var(--orange);
+    background:#fff;
+    box-shadow:0 0 0 3px rgba(246,139,30,.12);
+  }
+
+  .toggle-pw{
+    position:absolute;
+    right:.85rem;
+    top:50%;
+    transform:translateY(-50%);
+    background:none;
+    border:none;
+    color:var(--muted);
+    cursor:pointer;
+    padding:0;
+    font-size:.95rem;
+  }
+  .toggle-pw:hover{ color:var(--text); }
+
+  .row-between{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+
+  .form-check-input.nova:checked{
+    background-color:var(--orange);
+    border-color:var(--orange);
+  }
+  .form-check-label{ color:var(--text); font-size:.85rem; }
+
+  .link-orange{
+    color:var(--orange);
+    font-weight:700;
+    font-size:.85rem;
+    text-decoration:none;
+  }
+  .link-orange:hover{ text-decoration:underline; }
+
+  .btn-orange{
+    background:var(--orange);
+    border:1px solid var(--orange);
+    color:#fff;
+    font-weight:700;
+    font-size:.95rem;
+    border-radius:10px;
+    padding:.75rem 0;
+    width:100%;
+    transition:background .15s ease, border-color .15s ease;
+  }
+  .btn-orange:hover{
+    background:var(--orange-dark);
+    border-color:var(--orange-dark);
+    color:#fff;
+  }
+  .btn-orange:active{ transform:translateY(1px); }
+
+  .divider-text{
+    display:flex;
+    align-items:center;
+    gap:.9rem;
+    color:var(--muted);
+    font-size:.78rem;
+    margin:1.5rem 0;
+  }
+  .divider-text::before,
+  .divider-text::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--border);
+  }
+
+  .btn-pill-outline{
+    background:#fff;
+    border:1px solid var(--border);
+    color:var(--text);
+    border-radius:999px;
+    padding:.6rem 0;
+    width:100%;
+    font-weight:600;
+    font-size:.88rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:.5rem;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .btn-pill-outline:hover{
+    border-color:var(--orange);
+    color:var(--orange);
+  }
+
+  .err-msg{
+    color:#dc3545;
+    font-size:.78rem;
+    margin-top:.35rem;
+    display:none;
+  }
+  .err-msg.show{ display:block; }
+  .form-control-nova.is-invalid{ border-color:#dc3545; }
+
+  @media (max-width: 575.98px){
+    .form-card{ padding:1.5rem; border:none; box-shadow:none; }
+  }
+
+  @media (max-width: 991.98px){
+    .split-wrap{ flex-direction:column; }
+    .brand-panel{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="split-wrap">
+
+  <!-- LEFT: BRAND PANEL -->
+  <div class="brand-panel">
+    <div class="brand-wordmark">NovaMart</div>
+
+    <div class="brand-mid">
+      <span class="eyebrow-badge">Marketplace · Deals · Delivery</span>
+      <h1 class="brand-headline">Welcome back to smarter shopping.</h1>
+      <p class="brand-sub">Sign in to track your orders, manage your wishlist, and pick up right where you left off on today's deals.</p>
+
+      <div class="feature-card">
+        <i class="bi bi-truck"></i>
+        <div>
+          <div class="ft-title">Fast Delivery</div>
+          <div class="ft-sub">On selected items</div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <i class="bi bi-shield-check"></i>
+        <div>
+          <div class="ft-title">Secure Payments</div>
+          <div class="ft-sub">Safe checkout</div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <i class="bi bi-arrow-repeat"></i>
+        <div>
+          <div class="ft-title">Easy Returns</div>
+          <div class="ft-sub">30-day policy</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-footer">© 2026 NovaMart. All rights reserved.</div>
+  </div>
+
+  <!-- RIGHT: FORM PANEL -->
+  <div class="form-panel">
+    <div class="form-card">
+
+      <div class="d-lg-none brand-wordmark mb-3 text-center" style="color:var(--orange)">NovaMart</div>
+
+      <div class="form-title">Sign in to your account</div>
+      <div class="form-caption">New to NovaMart? <a href="signup.html">Create an account</a></div>
+
+      <form id="signinForm" novalidate>
+
+        <div class="mb-3">
+          <label class="field-label" for="email">Email address</label>
+          <div class="input-shell">
+            <input type="email" id="email" class="form-control-nova" placeholder="you@example.com" required>
+          </div>
+          <div class="err-msg" id="emailErr">Enter a valid email address.</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="field-label" for="password">Password</label>
+          <div class="input-shell">
+            <input type="password" id="password" class="form-control-nova" placeholder="Enter your password" required minlength="6">
+            <button type="button" class="toggle-pw" id="togglePw" aria-label="Show password">
+              <i class="bi bi-eye"></i>
+            </button>
+          </div>
+          <div class="err-msg" id="pwErr">Password must be at least 6 characters.</div>
+        </div>
+
+        <div class="row-between mb-4">
+          <div class="form-check">
+            <input class="form-check-input nova" type="checkbox" id="rememberMe">
+            <label class="form-check-label" for="rememberMe">Remember me</label>
+          </div>
+          <a href="#" class="link-orange">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn-orange">Sign In</button>
+
+        <div class="divider-text">OR CONTINUE WITH</div>
+
+        <div class="d-flex gap-2">
+          <button type="button" class="btn-pill-outline">
+            <i class="bi bi-google"></i> Google
+          </button>
+          <button type="button" class="btn-pill-outline">
+            <i class="bi bi-apple"></i> Apple
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Show / hide password
+  const pwInput = document.getElementById('password');
+  const toggleBtn = document.getElementById('togglePw');
+  toggleBtn.addEventListener('click', () => {
+    const isPw = pwInput.getAttribute('type') === 'password';
+    pwInput.setAttribute('type', isPw ? 'text' : 'password');
+    toggleBtn.innerHTML = isPw ? '<i class="bi bi-eye-slash"></i>' : '<i class="bi bi-eye"></i>';
+    toggleBtn.setAttribute('aria-label', isPw ? 'Hide password' : 'Show password');
+  });
+
+  // Simple client-side validation
+  const form = document.getElementById('signinForm');
+  const emailInput = document.getElementById('email');
+  const emailErr = document.getElementById('emailErr');
+  const pwErr = document.getElementById('pwErr');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let valid = true;
+
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+    if (!emailOk) {
+      emailInput.classList.add('is-invalid');
+      emailErr.classList.add('show');
+      valid = false;
+    } else {
+      emailInput.classList.remove('is-invalid');
+      emailErr.classList.remove('show');
+    }
+
+    if (pwInput.value.length < 6) {
+      pwInput.classList.add('is-invalid');
+      pwErr.classList.add('show');
+      valid = false;
+    } else {
+      pwInput.classList.remove('is-invalid');
+      pwErr.classList.remove('show');
+    }
+
+    if (valid) {
+      // Hook up to your real sign-in logic / API call here
+      alert('Signed in successfully! (demo)');
+      form.reset();
+    }
+  });
+
+  // Clear invalid state as user types
+  emailInput.addEventListener('input', () => {
+    emailInput.classList.remove('is-invalid');
+    emailErr.classList.remove('show');
+  });
+  pwInput.addEventListener('input', () => {
+    pwInput.classList.remove('is-invalid');
+    pwErr.classList.remove('show');
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
