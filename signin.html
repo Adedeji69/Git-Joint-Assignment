@@ -316,14 +316,14 @@
       </div>
     </div>
 
-    <div class="panel-footer">© 2026 NovaMart. All rights reserved.</div>
+    <div class="panel-footer">© 2026 Swift Luxe. All rights reserved.</div>
   </div>
 
   <!-- RIGHT: FORM PANEL -->
   <div class="form-panel">
     <div class="form-card">
 
-      <div class="d-lg-none brand-wordmark mb-3 text-center" style="color:var(--orange)">NovaMart</div>
+      <div class="d-lg-none brand-wordmark mb-3 text-center" style="color:var(--orange)">Swift Luxe</div>
 
       <div class="form-title">Sign in to your account</div>
       <div class="form-caption">New to SWIFT LUXE? <a href="signup.html">Create an account</a></div>
@@ -357,9 +357,7 @@
           <a href="#" class="link-orange">Forgot password?</a>
         </div>
 
-        <a href="loggedin.html">
             <button type="submit" class="btn-orange">Sign In</button>
-        </a>
 
         <div class="divider-text">OR CONTINUE WITH</div>
 
@@ -419,10 +417,9 @@
       pwErr.classList.remove('show');
     }
 
-    if (valid) {
+if (valid) {
       // Hook up to your real sign-in logic / API call here
-      alert('Signed in successfully! (demo)');
-      form.reset();
+      window.location.href = 'loggedin.html';
     }
   });
 
